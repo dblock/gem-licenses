@@ -5,6 +5,7 @@ group :development do
   gem "jeweler", "~> 1.5.2"
 end
 
+=begin
 group :test do
   gem "mongo"
   gem "bson"
@@ -15,4 +16,5 @@ group :test do
   gem "daemons"
   gem "frac"  
 end
+=end
 
