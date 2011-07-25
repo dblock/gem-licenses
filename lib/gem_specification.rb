@@ -15,30 +15,10 @@ class Gem::Specification
         if (parts.length >= 2)
           licenses << parts[0].upcase
         else
-          license_file = File.join(full_gem_path, filename)
-          license_file_handle = File.new(license_file, "r")
-          while (line = license_file_handle.gets)
-            line = line.strip
-            if line.include? "MIT License"
-              licenses << "MIT" 
-              break
-            end
-          end
-          license_file_handle.close
+          licenses = guess_licenses_from_file_contents File.join(full_gem_path, filename)
         end
       elsif filename_without_extension.include?("readme")
-        readme_file = File.join(full_gem_path, filename)
-        readme_file_handle = File.new(readme_file, "r")
-        while (line = readme_file_handle.gets)
-          line = line.strip
-          if line.include? "MIT License"
-            licenses << "MIT"
-            break
-          elsif line.start_with? "license:"
-            licenses << line.split(':')[1]
-            break
-          end
-        end
+        licenses = guess_licenses_from_file_contents File.join(full_gem_path, filename)
       end
       break if licenses.length > 0
     end
@@ -46,5 +26,24 @@ class Gem::Specification
     licenses
   end
 
+  private
+  
+  def guess_licenses_from_file_contents(path)
+    licenses = []
+    file_handle = File.new(path, "r")
+    while (line = file_handle.gets)
+      line = line.strip
+      if line.include? "MIT License"
+        licenses << "MIT"
+        break
+      elsif line.start_with? "license:"
+        licenses << line.split(':')[1]
+        break
+      end
+    end
+    file_handle.close
+    licenses
+  end
+  
 end
 
