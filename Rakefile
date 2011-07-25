@@ -32,3 +32,14 @@ end
 
 task :default => :spec
 
+require 'gem_licenses.rb'
+
+task :licenses do
+  Gem.licenses.each do |license, gems| 
+    puts "#{license}"
+    gems.each do |gem|
+      puts " #{gem.name} (#{gem.full_gem_path})"
+    end
+  end
+end
+
