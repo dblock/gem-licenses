@@ -32,13 +32,14 @@ class Gem::Specification
     licenses = []
     file_handle = File.new(path, "r")
     begin
-      while (line = file_handle.gets)
+      while (line = file_handle.gets) && (licenses.size == 0)
         line = line.strip
         [ 
           /released under the (?<l>\w*) license/i,
+          /same license as (?<l>\w*)/i,
           /^(?<l>\w*) license/i,
           /(the (?<l>\w*) license)/i,
-          /license: ^(?<l>\w*)/i
+          /^license: ^(?<l>\w*)/i
         ].each do |r|
           res = Regexp.new(r).match(line)
           next unless res

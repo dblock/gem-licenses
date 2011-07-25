@@ -37,9 +37,12 @@ require 'gem_licenses.rb'
 task :licenses do
   Gem.licenses.each do |license, gems| 
     puts "#{license}"
-    gems.each do |gem|
-      puts " #{gem.name} (#{gem.full_gem_path})"
+    puts "=" * license.length
+    gems.sort_by { |gem| gem.name }.each do |gem|
+      puts "* #{gem.name} #{gem.version} (#{gem.homepage}) - #{gem.summary}"
+      # puts gem.full_gem_path
     end
+    puts ""
   end
 end
 

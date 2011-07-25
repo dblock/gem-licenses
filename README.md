@@ -22,8 +22,8 @@ Include in your project. To list licenses try the following Rake task.
     task :licenses do
       Gem.licenses.each do |license, gems| 
         puts "#{license}"
-        gems.each do |gem|
-          puts " #{gem.name} (#{gem.full_gem_path})"
+        gems.sort_by { |gem| gem.name }.each do |gem|
+          puts "* #{gem.name} #{gem.version} (#{gem.homepage}) - #{gem.summary}"
         end
       end
     end

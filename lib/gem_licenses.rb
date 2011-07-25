@@ -7,10 +7,9 @@ module Gem
     def licenses
       licenses = {}
       Gem.loaded_specs.each do |key, spec|
-        # gemspec defines licenses
         spec.licenses.each do |license|
-          licenses[license.to_sym] ||= []
-          licenses[license.to_sym] << spec
+          licenses[license.capitalize.to_sym] ||= []
+          licenses[license.capitalize.to_sym] << spec
         end
       end
       licenses
