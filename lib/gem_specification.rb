@@ -2,7 +2,7 @@ class Gem::Specification
   alias_method :__licenses, :licenses
 
   def licenses
-    ary = __licenses || []
+    ary = (__licenses || []).keep_if { |l| l.length > 0 }
     ary.length == 0 ? guess_licenses : ary
   end
   
@@ -34,12 +34,15 @@ class Gem::Specification
     begin
       while (line = file_handle.gets) && (licenses.size == 0)
         line = line.strip
+        # positive matches
         [ 
-          /released under the (?<l>\w*) license/i,
-          /same license as (?<l>\w*)/i,
-          /^(?<l>\w*) license/i,
-          /(the (?<l>\w*) license)/i,
-          /^license: ^(?<l>\w*)/i
+          /released under the (?<l>[\s\w]*) license/i,
+          /same license as (?<l>[\s\w]*)/i,
+          /^(?<l>[\s\w]*) License, see/i,
+          /^(?<l>[\w]*) license$/i,
+          /\(the (?<l>[\s\w]*) license\)/i,
+          /^license: (?<l>[\s\w]*)/i,
+          /^released under the (?<l>[\s\w]*) license/i,
         ].each do |r|
           res = Regexp.new(r).match(line)
           next unless res

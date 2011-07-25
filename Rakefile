@@ -39,8 +39,8 @@ task :licenses do
     puts "#{license}"
     puts "=" * license.length
     gems.sort_by { |gem| gem.name }.each do |gem|
-      puts "* #{gem.name} #{gem.version} (#{gem.homepage}) - #{gem.summary}"
-      # puts gem.full_gem_path
+      puts "* #{gem.name} #{gem.version} (#{gem.homepage}) - #{gem.summary.strip}"
+      puts gem.full_gem_path
     end
     puts ""
   end
