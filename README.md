@@ -1,6 +1,7 @@
 Gem-Licenses
 ============
 
-Collect license information from project's gems.
+Attempt to collect license information from project's gems.
+
 
 
