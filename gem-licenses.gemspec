@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "gem-licenses.gemspec",
     "lib/gem_licenses.rb",
     "lib/gem_specification.rb",
     "spec/gem_licenses/gem_licenses_spec.rb",
