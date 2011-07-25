@@ -33,11 +33,15 @@ class Gem::Specification
     file_handle = File.new(path, "r")
     while (line = file_handle.gets)
       line = line.strip
-      if line.include? "MIT License"
-        licenses << "MIT"
-        break
-      elsif line.start_with? "license:"
-        licenses << line.split(':')[1]
+      [ 
+        /released under the (?<l>\w*) license/i,
+        /^(?<l>\w*) license/i,
+        /(the (?<l>\w*) license)/i,
+        /license: ^(?<l>\w*)/i
+      ].each do |r|
+        res = Regexp.new(r).match(line)
+        next unless res
+        licenses << res['l']
         break
       end
     end
