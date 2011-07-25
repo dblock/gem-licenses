@@ -31,19 +31,23 @@ class Gem::Specification
   def guess_licenses_from_file_contents(path)
     licenses = []
     file_handle = File.new(path, "r")
-    while (line = file_handle.gets)
-      line = line.strip
-      [ 
-        /released under the (?<l>\w*) license/i,
-        /^(?<l>\w*) license/i,
-        /(the (?<l>\w*) license)/i,
-        /license: ^(?<l>\w*)/i
-      ].each do |r|
-        res = Regexp.new(r).match(line)
-        next unless res
-        licenses << res['l']
-        break
+    begin
+      while (line = file_handle.gets)
+        line = line.strip
+        [ 
+          /released under the (?<l>\w*) license/i,
+          /^(?<l>\w*) license/i,
+          /(the (?<l>\w*) license)/i,
+          /license: ^(?<l>\w*)/i
+        ].each do |r|
+          res = Regexp.new(r).match(line)
+          next unless res
+          licenses << res['l']
+          break
+        end
       end
+    rescue
+      # TODO: warning
     end
     file_handle.close
     licenses
