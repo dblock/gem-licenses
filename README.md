@@ -17,6 +17,8 @@ Usage
 
 Include in your project. To list licenses try the following Rake task.
 
+    require 'gem_licenses'
+
     task :licenses do
       Gem.licenses.each do |license, gems| 
         puts "#{license}"
