@@ -32,7 +32,7 @@ end
 
 task :default => :spec
 
-require 'gem_licenses.rb'
+require 'gem_licenses'
 
 task :licenses do
   Gem.licenses.each do |license, gems| 
