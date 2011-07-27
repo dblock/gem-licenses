@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{gem-licenses}
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Daniel Doubrovkine"]
-  s.date = %q{2011-07-25}
+  s.date = %q{2011-07-27}
   s.description = %q{Attempts to figure out what licenses various gems use.}
   s.email = %q{dblock@dblock.org}
   s.extra_rdoc_files = [
@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "gem-licenses.gemspec",
+    "lib/gem-licenses.rb",
     "lib/gem_licenses.rb",
     "lib/gem_specification.rb",
     "spec/gem_licenses/gem_licenses_spec.rb",
