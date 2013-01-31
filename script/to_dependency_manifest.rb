@@ -12,7 +12,7 @@ require 'treetop'
 require 'gem_licenses.treetop'
 
 p = GemLicensesParser.new
-tree = p.parse(DATA.read)
+tree = p.parse((ARGV.first ? File.open(ARGV.first) : DATA).read)
 
 gems = []
 tree.elements.each do |section|
