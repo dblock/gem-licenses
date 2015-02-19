@@ -25,6 +25,9 @@ module Gem
       end
       licenses << :unknown if licenses.length == 0
       licenses
+    rescue Errno::ENOENT
+      # TODO: warning
+      []
     end
 
     private
