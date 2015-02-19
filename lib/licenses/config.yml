@@ -1,0 +1,27 @@
+mit: MIT
+perl artistic v2: Perl Artistic v2
+artistic 2.0: Perl Artistic v2
+gnu gpl v2: GPLv2
+ruby 1.8: Ruby
+ruby: Ruby
+bsd: BSD
+bsd-2-clause: BSD
+gpl2: GPLv2
+gpl-2: GPLv2
+gplv2: GPLv2
+apache 2.0: Apache 2.0
+apache license 2.0: Apache 2.0
+apache-2.0: Apache 2.0
+apache 2: Apache 2.0
+apache license version 2.0: Apache 2.0
+apache: Apache 2.0
+gpl-3.0: GPLv3
+gpl-3: GPLv3
+gplv3: GPLv3
+LGPLv2.1+: LGPLv2
+lgplv2.1+: LGPLv2
+gplv2+: GPLv2
+new relic: NewRelic
+isc: ISC
+license: Unknown
+wtfpl: WTFPL
