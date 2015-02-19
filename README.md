@@ -17,17 +17,24 @@ Are you currently copying individual license.txt files "by hand" or are you incl
 Usage
 =====
 
-Include in your project. To list licenses try the following Rake task.
+Include gem-licenses in your project's Gemfile.
 
-``` ruby
-task :licenses do
-  Gem.licenses.each do |license, gems|
-    puts "#{license}"
-    gems.sort_by { |gem| gem.name }.each do |gem|
-      puts "* #{gem.name} #{gem.version} (#{gem.homepage}) - #{gem.summary}"
-    end
-  end
+```
+group :development, :test do
+  gem 'gem-licenses'
 end
+```
+
+Install Rake tasks from Rakefile.
+
+```
+Gem::Licenses.install_tasks
+```
+
+To list licenses try the following Rake task.
+
+```
+rake gem:licenses
 ```
 
 Contributing

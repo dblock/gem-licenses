@@ -18,5 +18,4 @@ require 'rake'
 Bundler::GemHelper.install_tasks
 
 require 'gem_licenses'
-
-load 'tasks/licenses.rake'
+Gem::Licenses.install_tasks
