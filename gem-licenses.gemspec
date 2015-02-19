@@ -15,4 +15,3 @@ Gem::Specification.new do |s|
   s.licenses = ['MIT']
   s.summary = 'Attempts to figure out what licenses various gems use.'
 end
-

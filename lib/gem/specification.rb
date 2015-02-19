@@ -11,14 +11,14 @@ module Gem
       licenses = []
       Dir.foreach(full_gem_path) do |filename|
         filename_without_extension = File.basename(filename, File.extname(filename)).downcase
-        if filename_without_extension.include?("license")
+        if filename_without_extension.include?('license')
           parts = filename.split('-')
           if (parts.length >= 2)
             licenses << parts[0].upcase
           else
             licenses = guess_licenses_from_file_contents File.join(full_gem_path, filename)
           end
-        elsif filename_without_extension.include?("readme")
+        elsif filename_without_extension.include?('readme')
           licenses = guess_licenses_from_file_contents File.join(full_gem_path, filename)
         end
         break if licenses.length > 0
@@ -31,7 +31,7 @@ module Gem
 
     def guess_licenses_from_file_contents(path)
       licenses = []
-      file_handle = File.new(path, "r")
+      file_handle = File.new(path, 'r')
       begin
         while (line = file_handle.gets) && (licenses.size == 0)
           line = line.strip
@@ -43,7 +43,7 @@ module Gem
             /^(?<l>[\w]*) license$/i,
             /\(the (?<l>[\s\w]*) license\)/i,
             /^license: (?<l>[\s\w]*)/i,
-            /^released under the (?<l>[\s\w]*) license/i,
+            /^released under the (?<l>[\s\w]*) license/i
           ].each do |r|
             res = Regexp.new(r).match(line)
             next unless res
@@ -57,7 +57,5 @@ module Gem
       file_handle.close
       licenses
     end
-
   end
 end
-
