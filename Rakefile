@@ -12,20 +12,6 @@ end
 require 'rake'
 require 'rspec/core/rake_task'
 
-require 'jeweler'
-
-Jeweler::Tasks.new do |gem|
-  gem.name = "gem-licenses"
-  gem.homepage = "http://github.com/dblock/gem-licenses"
-  gem.license = "MIT"
-  gem.summary = "List all gem licenses."
-  gem.description = "Attempts to figure out what licenses various gems use."
-  gem.email = "dblock@dblock.org"
-  gem.authors = [ "Daniel Doubrovkine" ]
-end
-
-Jeweler::RubygemsDotOrgTasks.new
-
 RSpec::Core::RakeTask.new(:spec) do |spec|
   spec.pattern = "spec/**/*_spec.rb"
 end
@@ -35,7 +21,7 @@ task :default => :spec
 require 'gem_licenses'
 
 task :licenses do
-  Gem.licenses.each do |license, gems| 
+  Gem.licenses.each do |license, gems|
     puts "#{license}"
     puts "=" * license.length
     gems.sort_by { |gem| gem.name }.each do |gem|
