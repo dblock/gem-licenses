@@ -2,6 +2,19 @@ module Gem
   class Specification
     alias_method :__licenses, :licenses
 
+    LICENSE_REFERENCES = [
+      /released under the (?<l>[\s\w]*) license/i,
+      /same license as (?<l>[\s\w]*)/i,
+      /^(?<l>[\s\w]*) License, see/i,
+      /^(?<l>[\w]*) license$/i,
+      /\(the (?<l>[\s\w]*) license\)/i,
+      /^license: (?<l>[\s\w]*)/i,
+      /^released under the (?<l>[\s\w]*) license/i,
+      /license: (?<l>[\s\w]*)$/i,
+      /^same as (?<l>[\s\w]*)/i,
+      /license of (?<l>[\s\w]*)/i
+    ]
+
     def licenses
       ary = (__licenses || []).keep_if { |l| l.length > 0 }
       ary.length == 0 ? guess_licenses : ary
@@ -39,7 +52,7 @@ module Gem
     end
 
     def self.normalize_text(text)
-      text.downcase.to_s.gsub(/[[:space:]]+/, ' ').strip
+      text.downcase.to_s.gsub(/[[:space:]]+/, ' ').gsub(/[[:punct:]]/, '').strip
     end
 
     private
@@ -56,15 +69,7 @@ module Gem
         while (line = file_handle.gets)
           line = line.strip
           # positive matches
-          [
-            /released under the (?<l>[\s\w]*) license/i,
-            /same license as (?<l>[\s\w]*)/i,
-            /^(?<l>[\s\w]*) License, see/i,
-            /^(?<l>[\w]*) license$/i,
-            /\(the (?<l>[\s\w]*) license\)/i,
-            /^license: (?<l>[\s\w]*)/i,
-            /^released under the (?<l>[\s\w]*) license/i
-          ].each do |r|
+          LICENSE_REFERENCES.each do |r|
             res = r.match(line)
             return [res['l']] if res
           end
