@@ -16,10 +16,10 @@ module Gem
           if (parts.length >= 2)
             licenses << parts[0].upcase
           else
-            licenses = guess_licenses_from_file_contents File.join(full_gem_path, filename)
+            licenses = guess_licenses_from_file File.join(full_gem_path, filename)
           end
         elsif filename_without_extension.include?('readme')
-          licenses = guess_licenses_from_file_contents File.join(full_gem_path, filename)
+          licenses = guess_licenses_from_file File.join(full_gem_path, filename)
         end
         break if licenses.length > 0
       end
@@ -30,9 +30,27 @@ module Gem
       []
     end
 
+    def self.common_licenses
+      @common_licenses ||= Hash[
+        Dir.glob(File.expand_path('../../../common_licenses/*', __FILE__)).map do |f|
+          [ File.basename(f), normalize_text(File.read(f)) ]
+        end
+      ]
+    end
+
+    def self.normalize_text(text)
+      text.downcase.to_s.gsub(/[[:space:]]+/, ' ').strip
+    end
+
     private
 
-    def guess_licenses_from_file_contents(path)
+    def guess_licenses_from_file(path)
+      licenses = guess_licenses_from_reference(path)
+      return licenses if licenses.any?
+      guess_licenses_from_contents(path)
+    end
+
+    def guess_licenses_from_reference(path)
       licenses = []
       file_handle = File.new(path, 'r')
       begin
@@ -56,9 +74,20 @@ module Gem
         end
       rescue
         # TODO: warning
+      ensure
+        file_handle.close
       end
-      file_handle.close
       licenses
+    end
+
+    def guess_licenses_from_contents(path)
+      File.open(path, 'r') do |file|
+        contents = file.read
+        match, _ = self.class.common_licenses.detect do |key, lic|
+          self.class.normalize_text(contents).include?(lic)
+        end
+        return [match].compact
+      end
     end
   end
 end
