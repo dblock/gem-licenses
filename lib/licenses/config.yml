@@ -18,8 +18,8 @@ apache: Apache 2.0
 gpl-3.0: GPLv3
 gpl-3: GPLv3
 gplv3: GPLv3
-LGPLv2.1+: LGPLv2
-lgplv2.1+: LGPLv2
+LGPLv2.1+: LGPLv2.1
+lgplv2.1+: LGPLv2.1
 gplv2+: GPLv2
 new relic: NewRelic
 isc: ISC
