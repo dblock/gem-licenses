@@ -37,6 +37,12 @@ To list licenses try the following Rake task.
 rake gem:licenses
 ```
 
+To write a CSV file of gems + licenses.
+
+```
+rake gem:licenses:csv['licenses.csv']
+```
+
 Contributing
 ============
 
