@@ -33,7 +33,7 @@ module Gem
     def self.common_licenses
       @common_licenses ||= Hash[
         Dir.glob(File.expand_path('../../../common_licenses/*', __FILE__)).map do |f|
-          [ File.basename(f), normalize_text(File.read(f)) ]
+          [File.basename(f), normalize_text(File.read(f))]
         end
       ]
     end
@@ -51,10 +51,9 @@ module Gem
     end
 
     def guess_licenses_from_reference(path)
-      licenses = []
       file_handle = File.new(path, 'r')
       begin
-        while (line = file_handle.gets) && (licenses.size == 0)
+        while (line = file_handle.gets)
           line = line.strip
           # positive matches
           [
@@ -66,10 +65,8 @@ module Gem
             /^license: (?<l>[\s\w]*)/i,
             /^released under the (?<l>[\s\w]*) license/i
           ].each do |r|
-            res = Regexp.new(r).match(line)
-            next unless res
-            licenses << res['l']
-            break
+            res = r.match(line)
+            return [res['l']] if res
           end
         end
       rescue
@@ -77,13 +74,13 @@ module Gem
       ensure
         file_handle.close
       end
-      licenses
+      []
     end
 
     def guess_licenses_from_contents(path)
       File.open(path, 'r') do |file|
         contents = file.read
-        match, _ = self.class.common_licenses.detect do |key, lic|
+        match, _ = self.class.common_licenses.detect do |_key, lic|
           self.class.normalize_text(contents).include?(lic)
         end
         return [match].compact
