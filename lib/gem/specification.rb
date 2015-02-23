@@ -50,6 +50,8 @@ module Gem
 
     def self.normalize_text(text)
       text.downcase.to_s.gsub(/[[:space:]]+/, ' ').gsub(/[[:punct:]]/, '').strip
+    rescue ArgumentError
+      nil
     end
 
     private
@@ -83,7 +85,8 @@ module Gem
       File.open(path, 'r') do |file|
         contents = file.read
         match, _ = self.class.common_licenses.detect do |_key, lic|
-          self.class.normalize_text(contents).include?(lic)
+          normalized = self.class.normalize_text(contents)
+          normalized.include?(lic) if normalized
         end
         return [match].compact
       end
