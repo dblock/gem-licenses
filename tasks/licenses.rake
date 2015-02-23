@@ -30,9 +30,9 @@ namespace :gem do
       end
       puts "Written #{licenses.keys.count} license(s) for #{total} project(s): #{licenses.keys.join(', ')}"
 
-      if licenses.key?(:unknown)
-        puts "IMPORTANT: You have #{licenses[:unknown].count} projects without a guessable license!"
-        licenses[:unknown].each do |gem|
+      if licenses.key?('unknown')
+        puts "IMPORTANT: You have #{licenses['unknown'].count} projects without a guessable license!"
+        licenses['unknown'].each do |gem|
           puts "  #{gem.name}: #{gem.full_gem_path}"
         end
       end
