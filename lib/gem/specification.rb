@@ -23,15 +23,12 @@ module Gem
     def guess_licenses
       licenses = []
       Dir.foreach(full_gem_path) do |filename|
-        filename_without_extension = File.basename(filename, File.extname(filename)).downcase
-        if filename_without_extension.include?('license')
+        case File.basename(filename, File.extname(filename)).downcase
+        when /license/
           parts = filename.split('-')
-          if (parts.length >= 2)
-            licenses << parts[0].upcase
-          else
-            licenses = guess_licenses_from_file File.join(full_gem_path, filename)
-          end
-        elsif filename_without_extension.include?('readme')
+          return [parts[0].upcase] if parts.length >= 2
+          licenses = guess_licenses_from_file File.join(full_gem_path, filename)
+        when /copying|readme/
           licenses = guess_licenses_from_file File.join(full_gem_path, filename)
         end
         break if licenses.length > 0
