@@ -33,7 +33,7 @@ module Gem
         end
         break if licenses.length > 0
       end
-      licenses << :unknown if licenses.length == 0
+      licenses << 'unknown' if licenses.length == 0
       licenses
     rescue Errno::ENOENT
       # TODO: warning
