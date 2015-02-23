@@ -17,6 +17,7 @@ apache-2.0: Apache 2.0
 apache 2: Apache 2.0
 apache license version 2.0: Apache 2.0
 apache: Apache 2.0
+apl 2.0: Apache 2.0
 gpl-3.0: GPLv3
 gpl-3: GPLv3
 gplv3: GPLv3
@@ -26,7 +27,10 @@ lgplv2.1+: LGPLv2.1
 gplv2+: GPLv2
 new relic: NewRelic
 isc: ISC
-license: Unknown
+license: unknown
 wtfpl: WTFPL
 mit-v1: MIT
 mit-v2: MIT
+mit license: MIT
+lgpl-2.1+: LGPLv2.1
+lgpl-3.0: LGPLv3
