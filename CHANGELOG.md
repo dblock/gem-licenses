@@ -1,3 +1,7 @@
+#### 0.2.1 (Next)
+
+* Your contribution here.
+
 #### 0.2.0 (7/17/2015)
 
 * [#6](https://github.com/dblock/gem-licenses/pull/6): Use HTTPS for rubygems.org - [@O-I](https://github.com/O-I).
