@@ -1,6 +1,6 @@
 #### 0.2.1 (Next)
 
-* Your contribution here.
+* [#10](https://github.com/dblock/gem-licenses/pull/10): Rename class in order to avoid conflict with Rubygems 2.5 - [@caiosba](https://github.com/caiosba)
 
 #### 0.2.0 (7/17/2015)
 
