@@ -3,7 +3,7 @@ require 'gem-licenses/version'
 
 Gem::Specification.new do |s|
   s.name = 'gem-licenses'
-  s.version = Gem::Licenses::VERSION
+  s.version = Gem::GemLicenses::VERSION
   s.authors = ['Daniel Doubrovkine']
   s.email = 'dblock@dblock.org'
   s.platform = Gem::Platform::RUBY

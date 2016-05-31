@@ -1,5 +1,5 @@
 module Gem
-  module Licenses
+  module GemLicenses
     VERSION = '0.2.1'
   end
 end
