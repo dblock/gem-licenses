@@ -56,4 +56,4 @@ This project is licenced under the MIT license, see [LICENSE](LICENSE) for detai
 Copyright
 =========
 
-Copyright (c) Daniel Doubrovkine, 2011-2015, Artsy, Inc.
+Copyright (c) Daniel Doubrovkine, 2011-2016, Artsy, Inc.
