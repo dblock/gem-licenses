@@ -28,7 +28,7 @@ end
 Install Rake tasks from Rakefile.
 
 ```
-Gem::Licenses.install_tasks
+Gem::GemLicenses.install_tasks
 ```
 
 To list licenses try the following Rake task.
