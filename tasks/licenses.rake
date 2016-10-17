@@ -13,7 +13,7 @@ namespace :gem do
   end
 
   namespace :licenses do
-    task :csv do |_t, args|
+    task :csv do
       filename = ARGV[1] || 'licences.csv'
       require 'csv'
       filename = File.expand_path(filename, Dir.pwd)
