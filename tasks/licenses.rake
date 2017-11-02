@@ -2,7 +2,7 @@ desc 'Gather open-source licenses.'
 namespace :gem do
   task :licenses do
     Gem.licenses.each do |license, gems|
-      puts "#{license}"
+      puts license.to_s
       puts '=' * license.length
       gems.sort_by(&:name).each do |gem|
         puts "* #{gem.name} #{gem.version} (#{gem.homepage}) - #{gem.summary.strip}"
@@ -20,7 +20,7 @@ namespace :gem do
       licenses = Gem.licenses
       total = 0
       CSV.open(filename, 'w') do |csv|
-        csv << %w(name version homepage summary license)
+        csv << %w[name version homepage summary license]
         licenses.each do |license, gems|
           total += gems.count
           gems.sort_by(&:name).each do |gem|

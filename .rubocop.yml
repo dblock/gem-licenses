@@ -1,5 +1,12 @@
 AllCops:
+  TargetRubyVersion: 2.2
+  DisplayCopNames: true
+  DisplayStyleGuide: true
   Exclude:
     - vendor/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - tasks/*.rake
 
 inherit_from: .rubocop_todo.yml
