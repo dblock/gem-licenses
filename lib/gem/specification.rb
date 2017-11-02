@@ -1,6 +1,6 @@
 module Gem
   class Specification
-    alias_method :__licenses, :licenses
+    alias __licenses licenses
 
     LICENSE_REFERENCES = [
       /released under the (?<l>[\s\w]*) license/i,
@@ -13,11 +13,11 @@ module Gem
       /license: (?<l>[\s\w]*)$/i,
       /^same as (?<l>[\s\w]*)/i,
       /license of (?<l>[\s\w]*)/i
-    ]
+    ].freeze
 
     def licenses
-      ary = (__licenses || []).keep_if { |l| l.length > 0 }
-      ary.length == 0 ? guess_licenses : ary
+      ary = (__licenses || []).keep_if { |l| !l.empty? }
+      ary.empty? ? guess_licenses : ary
     end
 
     def guess_licenses
@@ -31,9 +31,9 @@ module Gem
         when /copying|readme/
           licenses = guess_licenses_from_file File.join(full_gem_path, filename)
         end
-        break if licenses.length > 0
+        break unless licenses.empty?
       end
-      licenses << 'unknown' if licenses.length == 0
+      licenses << 'unknown' if licenses.empty?
       licenses
     rescue Errno::ENOENT
       # TODO: warning
@@ -73,7 +73,7 @@ module Gem
             return [res['l']] if res
           end
         end
-      rescue
+      rescue StandardError
         # TODO: warning
       ensure
         file_handle.close
@@ -84,7 +84,7 @@ module Gem
     def guess_licenses_from_contents(path)
       File.open(path, 'r') do |file|
         contents = file.read
-        match, _ = self.class.common_licenses.detect do |_key, lic|
+        match, = self.class.common_licenses.detect do |_key, lic|
           normalized = self.class.normalize_text(contents)
           normalized.include?(lic) if normalized
         end
