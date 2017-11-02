@@ -19,7 +19,7 @@ Usage
 
 Include gem-licenses in your project's Gemfile.
 
-```
+```ruby
 group :development, :test do
   gem 'gem-licenses'
 end
@@ -27,19 +27,20 @@ end
 
 Install Rake tasks from Rakefile.
 
-```
+```ruby
+require 'gem-licenses'
 Gem::GemLicenses.install_tasks
 ```
 
 To list licenses try the following Rake task.
 
-```
+```shell
 rake gem:licenses
 ```
 
 To write a CSV file of gems + licenses.
 
-```
+```shell
 rake gem:licenses:csv['licenses.csv']
 ```
 
