@@ -65,7 +65,7 @@ git push origin my-feature-branch
 
 ## Make a Pull Request
 
-Go to https://github.com/contributor/grape and select your feature branch.
+Go to https://github.com/contributor/gem-licenses and select your feature branch.
 Click the 'Pull Request' button and fill out the form. Pull requests are usually reviewed within a few days.
 
 ## Update CHANGELOG Again
