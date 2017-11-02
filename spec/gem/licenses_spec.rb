@@ -13,6 +13,7 @@ describe Gem do
     gem_licenses_mit_spec = subject['MIT'].detect { |spec| spec == gem_licenses_spec }
     expect(gem_licenses_spec).to eq gem_licenses_mit_spec
   end
+
   it 'normalizes known license names' do
     expect(subject['GPLv2'].size).to be > 0
   end

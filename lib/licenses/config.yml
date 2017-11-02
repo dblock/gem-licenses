@@ -8,8 +8,9 @@ bsd: BSD
 bsd-2-clause: BSD 2-Clause
 2-clause bsdl: BSD 2-Clause
 bsd 2-clause: BSD 2-Clause
-gpl2: GPLv2
+gpl-2.0+: GPLv2
 gpl-2: GPLv2
+gpl2: GPLv2
 gplv2: GPLv2
 apache 2.0: Apache 2.0
 apache license 2.0: Apache 2.0
