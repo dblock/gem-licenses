@@ -13,9 +13,10 @@ namespace :gem do
   end
 
   namespace :licenses do
-    task :csv, [:filename] do |_t, args|
+    task :csv do
+      filename = ARGV[1] || 'licences.csv'
       require 'csv'
-      filename = File.expand_path(args[:filename], Dir.pwd)
+      filename = File.expand_path(filename, Dir.pwd)
       puts "Writing #{filename} ..."
       licenses = Gem.licenses
       total = 0
