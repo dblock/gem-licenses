@@ -10,7 +10,7 @@ In the examples below, substitute your Github username for `contributor` in URLs
 
 Fork the [project on Github](https://github.com/dblock/gem-licenses) and check out your copy.
 
-```
+```shell
 git clone https://github.com/contributor/gem-licenses.git
 cd gem-licenses
 git remote add upstream https://github.com/dblock/gem-licenses.git
@@ -20,7 +20,7 @@ git remote add upstream https://github.com/dblock/gem-licenses.git
 
 Make sure your fork is up-to-date and create a topic branch for your feature or bug fix.
 
-```
+```shell
 git checkout master
 git pull upstream master
 git checkout -b my-feature-branch
@@ -30,7 +30,7 @@ git checkout -b my-feature-branch
 
 Ensure that you can build the project and run tests.
 
-```
+```shell
 bundle install
 bundle exec rake
 ```
@@ -59,7 +59,7 @@ Make it look like every other line, including your name and link to your Github 
 
 ## Push
 
-```
+```shell
 git push origin my-feature-branch
 ```
 
@@ -78,14 +78,16 @@ Update the [CHANGELOG](CHANGELOG.md) with the pull request number. A typical ent
 
 Amend your previous commit and force push the changes.
 
-```
+```shell
 git commit --amend
 git push origin my-feature-branch -f
+```
+
 ## Rebase
 
 If you've been working on a change for a while, rebase with upstream/master.
 
-```
+```shell
 git fetch upstream
 git rebase upstream/master
 git push origin my-feature-branch -f
