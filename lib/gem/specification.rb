@@ -3,21 +3,60 @@ module Gem
     alias __licenses licenses
 
     LICENSE_REFERENCES = [
-      /released under the (?<l>[\s\w]*) license/i,
-      /same license as (?<l>[\s\w]*)/i,
-      /^(?<l>[\s\w]*) License, see/i,
-      /^(?<l>[\w]*) license$/i,
-      /\(the (?<l>[\s\w]*) license\)/i,
-      /^license: (?<l>[\s\w]*)/i,
-      /^released under the (?<l>[\s\w]*) license/i,
-      /license: (?<l>[\s\w]*)$/i,
-      /^same as (?<l>[\s\w]*)/i,
-      /license of (?<l>[\s\w]*)/i
+      /released under the (?<l>[\s\w]+) license/i,
+      /same license as (?<l>[\s\w]+)/i,
+      /same terms of (.+)/i,
+      /^(?<l>[\s\w]+) License, see/i,
+      /^(?<l>[\w]+) license$/i,
+      /\(the (?<l>[\s\w]+) license\)/i,
+      /^license: (?<l>[\s\w]+)/i,
+      /^released under the (?<l>[\s\w]+) license/i,
+      /license: (?<l>[\s\w]+)$/i,
+      /^same as (?<l>[\s\w]+)/i,
+      /license of (?<l>[\s\w]+)/i
     ].freeze
 
     def licenses
-      ary = (__licenses || []).keep_if { |l| !l.empty? }
-      ary.empty? ? guess_licenses : ary
+      cleaned_up_licenses
+    end
+
+    def cleaned_up_licenses
+      before = gem_or_file_license
+
+      log_warning "License #{before.inspect}"
+
+      # manually clean up some cruft
+      after = before.collect do |license|
+        stringified = license.to_s
+        if stringified == 'mit'
+          'MIT'
+        elsif stringified == 'lgpl'
+          'LGPL'
+        elsif stringified == 'gpl'
+          'GPL'
+        else
+          stringified
+        end
+      end
+
+      log_warning "  Cleaned #{after.inspect}" if before != after
+
+      after
+    end
+
+    def gem_or_file_license
+      from_gem || guess_licenses
+    end
+
+    def from_gem
+      result = (__licenses || []).reject(&:empty?)
+      if !result.empty?
+        log_warning 'Retrieved from Gem license' if debugging?
+        result
+      else
+        log_warning 'Guessing from file'
+        nil
+      end
     end
 
     def guess_licenses
@@ -56,6 +95,14 @@ module Gem
 
     private
 
+    def debugging?
+      ENV['DEBUG']
+    end
+
+    def log_warning(message)
+      warn message if debugging?
+    end
+
     def guess_licenses_from_file(path)
       licenses = guess_licenses_from_reference(path)
       return licenses if licenses.any?
@@ -73,8 +120,9 @@ module Gem
             return [res['l']] if res
           end
         end
-      rescue StandardError
-        # TODO: warning
+      rescue StandardError => e
+        # TODO: Print a useful warning
+        log_warning e.message
       ensure
         file_handle.close
       end
