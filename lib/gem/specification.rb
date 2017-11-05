@@ -28,9 +28,7 @@ module Gem
       # manually clean up some cruft
       after = before.map(&:to_s).map do |license|
         case license
-        when 'mit' then 'MIT'
-        when 'lgpl' then 'LGPL'
-        when 'gpl' then 'GPL'
+        when 'mit', 'lgpl', 'gpl' then license.upcase
         else license
         end
       end
