@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# encoding: utf-8
+
 #
 # Parse the output of gem-licenses (a list of licenses and the gems that use them)
 # and print a YAML file in the dependency_manifest.yml format used by the 'papers' gem.
@@ -16,13 +16,13 @@ tree = p.parse((ARGV.first ? File.open(ARGV.first) : DATA).read)
 gems = []
 tree.elements.each do |section|
   section.gems.elements.each do |gem|
-    gems <<"  #{gem.gem.name.text_value}-#{gem.gem.version.text_value}:
+    gems << "  #{gem.gem.name.text_value}-#{gem.gem.version.text_value}:
     license: #{section.license_name.text_value}
     project_url: #{gem.gem.url.text_value}"
   end
 end
 
-puts "gems:"
+puts 'gems:'
 gems.sort.each do |gem|
   puts gem
 end
