@@ -26,16 +26,12 @@ module Gem
       log_warning "License #{before.inspect}"
 
       # manually clean up some cruft
-      after = before.collect do |license|
-        stringified = license.to_s
-        if stringified == 'mit'
-          'MIT'
-        elsif stringified == 'lgpl'
-          'LGPL'
-        elsif stringified == 'gpl'
-          'GPL'
-        else
-          stringified
+      after = before.map(&:to_s).map do |license|
+        case license
+        when 'mit' then 'MIT'
+        when 'lgpl' then 'LGPL'
+        when 'gpl' then 'GPL'
+        else license
         end
       end
 
