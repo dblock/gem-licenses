@@ -23,8 +23,6 @@ module Gem
     def cleaned_up_licenses
       before = gem_or_file_license
 
-      log_warning "License #{before.inspect}"
-
       # manually clean up some cruft
       after = before.map(&:to_s).map do |license|
         case license
@@ -33,7 +31,7 @@ module Gem
         end
       end
 
-      log_warning "  Cleaned #{after.inspect}" if before != after
+      warn "  Cleaned #{after.inspect}" if before != after
 
       after
     end
@@ -45,10 +43,9 @@ module Gem
     def from_gem
       result = (__licenses || []).reject(&:empty?)
       if !result.empty?
-        log_warning 'Retrieved from Gem license' if debugging?
         result
       else
-        log_warning 'Guessing from file'
+        warn 'Guessing from file'
         nil
       end
     end
@@ -89,14 +86,6 @@ module Gem
 
     private
 
-    def debugging?
-      ENV['DEBUG']
-    end
-
-    def log_warning(message)
-      warn message if debugging?
-    end
-
     def guess_licenses_from_file(path)
       licenses = guess_licenses_from_reference(path)
       return licenses if licenses.any?
@@ -116,7 +105,7 @@ module Gem
         end
       rescue StandardError => e
         # TODO: Print a useful warning
-        log_warning e.message
+        warn e.message
       ensure
         file_handle.close
       end
