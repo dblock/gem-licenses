@@ -1,6 +1,8 @@
 #### 0.2.2 (Next)
 
-* Your contribution here.
+* [#16] Carry commits from newrelic [@olleolleolle]
+
+[#16]: https://github.com/dblock/gem-licenses/pull/16
 
 #### 0.2.1 (5/31/2016)
 
@@ -17,4 +19,6 @@
 #### 0.1.2 (7/27/2011)
 
 * Initial public release - [@dblock](https://github.com/dblock).
+
+[@olleolleolle]: https://github.com/olleolleolle
 
