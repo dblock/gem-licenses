@@ -1,7 +1,7 @@
 desc 'Gather open-source licenses.'
 namespace :gem do
   task :licenses do
-    Gem.licenses.each do |license, gems|
+    Gem.licenses.sort_by { |k, v| [-v.count, k] }.each do |license, gems|
       puts license.to_s
       puts '=' * license.length
       gems.sort_by(&:name).each do |gem|
