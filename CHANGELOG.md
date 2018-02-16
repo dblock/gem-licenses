@@ -1,3 +1,7 @@
+#### 0.2.3 (Next)
+
+* Your contribution here.
+
 #### 0.2.2 (2/16/2018)
 
 * [#18](https://github.com/dblock/gem-licenses/pull/18): Make order of rake gem:licenses deterministic - [@edennis](https://github.com/edennis).
