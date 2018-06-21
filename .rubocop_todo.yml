@@ -42,6 +42,6 @@ Style/Documentation:
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
-    - 'lib/gem-licenses/install_tasks.rb'
+    - 'lib/gem-licenses/load_tasks.rb'
     - 'lib/gem/licenses.rb'
     - 'lib/gem/specification.rb'
