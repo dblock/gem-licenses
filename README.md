@@ -28,6 +28,7 @@ end
 Install Rake tasks from Rakefile.
 
 ```ruby
+require 'rake'
 require 'gem-licenses'
 Gem::GemLicenses.install_tasks
 ```
