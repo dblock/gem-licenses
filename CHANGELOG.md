@@ -1,6 +1,6 @@
 #### 0.2.3 (Next)
 
-* Your contribution here.
+* Load Rake tasks via `Gem::Licenses.load_tasks` - [@dblock](https://github.com/dblock).
 
 #### 0.2.2 (2/16/2018)
 

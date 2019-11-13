@@ -25,12 +25,12 @@ group :development, :test do
 end
 ```
 
-Install Rake tasks from Rakefile.
+Load Rake tasks in your Rakefile.
 
 ```ruby
 require 'rake'
 require 'gem-licenses'
-Gem::GemLicenses.install_tasks
+Gem::GemLicenses.load_tasks
 ```
 
 To list licenses try the following Rake task.
