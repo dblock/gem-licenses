@@ -1,0 +1,43 @@
+# Treetop grammar for the output of gem-licenses
+
+grammar GemLicenses
+  # This is the default root because it's defined first
+  rule root
+    (license_section*)
+  end
+
+  rule license_name
+    [^\n]+
+  end
+
+  rule separator
+    "----------"
+  end
+
+  rule name
+    [a-zA-Z0-9_\-]+
+  end
+
+  rule version
+    [a-zA-Z0-9._\-]+
+  end
+
+  rule desc
+    [^\n]+
+  end
+
+  rule url
+    [^\)\n]*
+  end
+
+  rule gem
+    "* " name " " version " (" url ") - " desc
+  end
+
+  rule license_section
+    license_name "\n"
+    separator "\n"
+    gems:(gem "\n")+
+    "\n"*
+  end
+end

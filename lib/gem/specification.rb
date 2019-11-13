@@ -3,21 +3,51 @@ module Gem
     alias __licenses licenses
 
     LICENSE_REFERENCES = [
-      /released under the (?<l>[\s\w]*) license/i,
-      /same license as (?<l>[\s\w]*)/i,
-      /^(?<l>[\s\w]*) License, see/i,
-      /^(?<l>[\w]*) license$/i,
-      /\(the (?<l>[\s\w]*) license\)/i,
-      /^license: (?<l>[\s\w]*)/i,
-      /^released under the (?<l>[\s\w]*) license/i,
-      /license: (?<l>[\s\w]*)$/i,
-      /^same as (?<l>[\s\w]*)/i,
-      /license of (?<l>[\s\w]*)/i
+      /released under the (?<l>[\s\w]+) license/i,
+      /same license as (?<l>[\s\w]+)/i,
+      /same terms of (.+)/i,
+      /^(?<l>[\s\w]+) License, see/i,
+      /^(?<l>[\w]+) license$/i,
+      /\(the (?<l>[\s\w]+) license\)/i,
+      /^license: (?<l>[\s\w]+)/i,
+      /^released under the (?<l>[\s\w]+) license/i,
+      /license: (?<l>[\s\w]+)$/i,
+      /^same as (?<l>[\s\w]+)/i,
+      /license of (?<l>[\s\w]+)/i
     ].freeze
 
     def licenses
-      ary = (__licenses || []).keep_if { |l| !l.empty? }
-      ary.empty? ? guess_licenses : ary
+      cleaned_up_licenses
+    end
+
+    def cleaned_up_licenses
+      before = gem_or_file_license
+
+      # manually clean up some cruft
+      after = before.map(&:to_s).map do |license|
+        case license
+        when 'mit', 'lgpl', 'gpl' then license.upcase
+        else license
+        end
+      end
+
+      warn "  Cleaned #{after.inspect}" if before != after
+
+      after
+    end
+
+    def gem_or_file_license
+      from_gem || guess_licenses
+    end
+
+    def from_gem
+      result = (__licenses || []).reject(&:empty?)
+      if !result.empty?
+        result
+      else
+        warn 'Guessing from file'
+        nil
+      end
     end
 
     def guess_licenses
@@ -73,8 +103,9 @@ module Gem
             return [res['l']] if res
           end
         end
-      rescue StandardError
-        # TODO: warning
+      rescue StandardError => e
+        # TODO: Print a useful warning
+        warn e.message
       ensure
         file_handle.close
       end
