@@ -71,4 +71,31 @@ describe 'gem:licenses Rake tasks' do
       ).to_stderr
     end
   end
+
+  describe 'gem:licenses:copyrights:csv' do
+    before do
+      allow(mit_gem).to receive(:copyrights).and_return(['2019 Jane Doe', '2020 Example Corp'])
+      allow(unknown_gem).to receive(:copyrights).and_return([])
+    end
+
+    it 'writes gems, licenses, and copyrights to the CSV file' do
+      Dir.mktmpdir do |dir|
+        filename = File.join(dir, 'copyrights.csv')
+        expect { Rake::Task['gem:licenses:copyrights:csv'].invoke(filename) }.to output(
+          a_string_including('Written licenses and copyrights for 2 project(s).')
+        ).to_stdout
+        expect(CSV.read(filename)).to eq [
+          %w[name version homepage summary license copyright],
+          ['mit-gem', '1.0.0', 'https://example.com/mit-gem', 'An MIT gem.', 'MIT', '2019 Jane Doe; 2020 Example Corp'],
+          ['unknown-gem', '2.0.0', 'https://example.com/unknown-gem', 'A gem without a license.', 'unknown', '']
+        ]
+      end
+    end
+
+    it 'fails with a usage message without a filename' do
+      expect { Rake::Task['gem:licenses:copyrights:csv'].invoke }.to raise_error(SystemExit).and output(
+        "Missing CSV filename, run rake gem:licenses:copyrights:csv[copyrights.csv].\n"
+      ).to_stderr
+    end
+  end
 end

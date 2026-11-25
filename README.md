@@ -42,6 +42,12 @@ To write a CSV file of gems and licenses.
 rake gem:licenses:csv['licenses.csv']
 ```
 
+To write a CSV file of gems, licenses, and the copyright lines found in each gem's license, notice, and readme files.
+
+```shell
+rake gem:licenses:copyrights:csv['copyrights.csv']
+```
+
 ## Contributing
 
 See [CONTRIBUTING](CONTRIBUTING.md), [CHANGELOG](CHANGELOG.md), and [RELEASING](RELEASING.md).
