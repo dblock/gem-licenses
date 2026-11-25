@@ -22,6 +22,11 @@ describe Gem::Specification do
     expect(spec.guess_licenses).to eq(['BSD'])
   end
 
+  it 'matches "licensed under the ___ license"' do
+    allow(spec).to receive(:full_gem_path).and_return(gem_dir('licensed_under_the_apache_license'))
+    expect(spec.guess_licenses).to eq(['Apache'])
+  end
+
   it 'matches "same license as ___"' do
     allow(spec).to receive(:full_gem_path).and_return(gem_dir('same_license_as_ruby'))
     expect(spec.guess_licenses).to eq(['Ruby'])
