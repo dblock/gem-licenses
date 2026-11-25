@@ -1,4 +1,4 @@
-#### 0.3.0 (Next)
+#### 0.3.0 (11/25/2026)
 
 * [#25](https://github.com/dblock/gem-licenses/pull/25): Replace Travis CI with GitHub Actions testing Ruby 2.7 through 4.0, and make the license normalization spec independent of installed gems - [@dblock](https://github.com/dblock).
 * [#26](https://github.com/dblock/gem-licenses/pull/26): Lint Ruby, Markdown, YAML, and spelling with current RuboCop, rubocop-md, rubocop-prose, rubocop-spellcheck, and rubocop-yaml in a separate Lint workflow, and clean up documentation - [@dblock](https://github.com/dblock).
@@ -10,7 +10,6 @@
 * [#34](https://github.com/dblock/gem-licenses/pull/34): Detect licenses from "Licensed under the ___ License", such as the Apache License notice - [@dabooze](https://github.com/dabooze), [@DavidL06](https://github.com/DavidL06), [@dblock](https://github.com/dblock).
 * [#35](https://github.com/dblock/gem-licenses/pull/35): Collect copyright lines from license, notice, and readme files with `Gem::Specification#copyrights`, and write them with `rake gem:licenses:copyrights:csv` - [@DavidL06](https://github.com/DavidL06), [@dblock](https://github.com/dblock).
 * [#33](https://github.com/dblock/gem-licenses/pull/33): Add a `gem-licenses` command that lists the licenses of a project's bundle or writes them to CSV, with `--strict` to fail on gems without a guessable license, and sort CSV output by license - [@dblock](https://github.com/dblock).
-* Your contribution here.
 
 #### 0.2.2 (2/16/2018)
 
