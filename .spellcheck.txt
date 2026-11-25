@@ -18,6 +18,7 @@ JRuby
 linters
 md
 mit
+newrelic
 nitpicky
 olleolleolle
 railtie

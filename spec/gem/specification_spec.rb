@@ -27,8 +27,32 @@ describe Gem::Specification do
     expect(spec.guess_licenses).to eq(['Ruby'])
   end
 
+  it 'matches "same terms of ___"' do
+    allow(spec).to receive(:full_gem_path).and_return(gem_dir('same_terms_of_ruby'))
+    expect(spec.guess_licenses).to eq(['Ruby'])
+  end
+
+  it 'finds the license in LICENSE.md' do
+    allow(spec).to receive(:full_gem_path).and_return(gem_dir('mit_license_in_license_md'))
+    expect(spec.guess_licenses).to eq(['MIT'])
+  end
+
+  it 'skips references without a license name' do
+    allow(spec).to receive(:full_gem_path).and_return(gem_dir('empty_reference_before_license'))
+    expect(spec.guess_licenses).to eq(['MIT'])
+  end
+
   it 'gracefully recovers from unparseable files' do
     allow(spec).to receive(:full_gem_path).and_return(gem_dir('nonstandard_characters'))
-    expect(spec.guess_licenses).to eq(['unknown'])
+    expect { expect(spec.guess_licenses).to eq(['unknown']) }.to output(
+      %r{\Agem-licenses: cannot read .*/nonstandard_characters/README.md: invalid byte sequence in UTF-8\.\n\z}
+    ).to_stderr
+  end
+
+  it 'warns about a missing gem directory' do
+    allow(spec).to receive(:full_gem_path).and_return(gem_dir('missing'))
+    expect { expect(spec.guess_licenses).to eq([]) }.to output(
+      /\Agem-licenses: No such file or directory .*missing\.\n\z/
+    ).to_stderr
   end
 end
