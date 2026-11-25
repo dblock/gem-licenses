@@ -19,6 +19,9 @@ linters
 md
 mit
 nitpicky
+olleolleolle
+railtie
+Railtie
 Rakefile
 rb
 README
