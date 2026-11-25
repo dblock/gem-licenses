@@ -1,5 +1,4 @@
-$LOAD_PATH.push File.expand_path('../lib', __FILE__)
-require 'gem-licenses/version'
+require_relative 'lib/gem-licenses/version'
 
 Gem::Specification.new do |s|
   s.name = 'gem-licenses'
