@@ -48,8 +48,7 @@ Metrics/BlockLength:
     - Exclude
   Exclude:
   - Gemfile
-  # Release examples run a release in a fixture and verify its tag, next development commit, and files together.
-  - spec/release/release_spec.rb
+  - spec/**/*_spec.rb
   - tasks/*.rake
 
 Layout/LineLength:

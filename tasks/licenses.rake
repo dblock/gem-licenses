@@ -14,6 +14,8 @@ namespace :gem do
 
   namespace :licenses do
     task :csv, [:filename] do |_t, args|
+      abort 'Missing CSV filename, run rake gem:licenses:csv[licenses.csv].' if args[:filename].to_s.strip.empty?
+
       require 'csv'
       filename = File.expand_path(args[:filename], Dir.pwd)
       puts "Writing #{filename} ..."
