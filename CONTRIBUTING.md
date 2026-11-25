@@ -1,14 +1,12 @@
 # Contributing to Gem-Licenses
 
-This project is work of [many contributors](https://github.com/dblock/gem-licenses/graphs/contributors).
-You're encouraged to submit [pull requests](https://github.com/dblock/gem-licenses/pulls),
-[propose features and discuss issues](https://github.com/dblock/gem-licenses/issues).
+This project is work of [many contributors](https://github.com/dblock/gem-licenses/graphs/contributors). You're encouraged to submit [pull requests](https://github.com/dblock/gem-licenses/pulls), [propose features and discuss issues](https://github.com/dblock/gem-licenses/issues).
 
-In the examples below, substitute your Github username for `contributor` in URLs.
+In the examples below, substitute your GitHub username for `contributor` in URLs.
 
 ## Fork the Project
 
-Fork the [project on Github](https://github.com/dblock/gem-licenses) and check out your copy.
+Fork the [project on GitHub](https://github.com/dblock/gem-licenses) and check out your copy.
 
 ```shell
 git clone https://github.com/contributor/gem-licenses.git
@@ -35,10 +33,11 @@ bundle install
 bundle exec rake
 ```
 
+`bundle exec rake` runs RuboCop and the specs. RuboCop also checks Ruby examples in Markdown, YAML, and spelling; add reviewed project vocabulary to [.spellcheck.txt](.spellcheck.txt). Run `bundle exec rake lint` to lint only. The linters install only on MRI Ruby 3.3 and newer; on older Rubies `rake` runs only the specs.
+
 ## Write Tests
 
-Try to write a test that reproduces the problem you're trying to fix or describes a feature that you want to build.
-Add to [spec](spec).
+Try to write a test that reproduces the problem you're trying to fix or describes a feature that you want to build. Add to [spec](spec).
 
 We definitely appreciate pull requests that highlight or reproduce a problem, even without a fix.
 
@@ -54,8 +53,7 @@ Document any external behavior in the [README](README.md).
 
 ## Update Changelog
 
-Add a line to [CHANGELOG](CHANGELOG.md) under *Next Release*.
-Make it look like every other line, including your name and link to your Github account.
+Add a line to [CHANGELOG](CHANGELOG.md) under *Next*. Make it look like every other line, including your name and link to your GitHub account.
 
 ## Push
 
@@ -65,14 +63,13 @@ git push origin my-feature-branch
 
 ## Make a Pull Request
 
-Go to https://github.com/contributor/gem-licenses and select your feature branch.
-Click the 'Pull Request' button and fill out the form. Pull requests are usually reviewed within a few days.
+Go to https://github.com/contributor/gem-licenses and select your feature branch. Click the 'Pull Request' button and fill out the form. Pull requests are usually reviewed within a few days.
 
 ## Update CHANGELOG Again
 
 Update the [CHANGELOG](CHANGELOG.md) with the pull request number. A typical entry looks as follows.
 
-```
+```markdown
 * [#123](https://github.com/dblock/gem-licenses/pull/123): Reticulated splines - [@contributor](https://github.com/contributor).
 ```
 
