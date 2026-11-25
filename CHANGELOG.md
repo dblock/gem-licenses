@@ -1,5 +1,6 @@
 #### 0.2.3 (Next)
 
+* [#25](https://github.com/dblock/gem-licenses/pull/25): Replace Travis CI with GitHub Actions testing Ruby 2.7 through 4.0, and make the license normalization spec independent of installed gems - [@dblock](https://github.com/dblock).
 * Your contribution here.
 
 #### 0.2.2 (2/16/2018)
