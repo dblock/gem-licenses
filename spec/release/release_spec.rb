@@ -11,7 +11,7 @@ if RUBY_ENGINE == 'ruby' && Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('
     let(:root) { File.expand_path('../..', __dir__) }
     let(:version_path) { 'lib/gem-licenses/version.rb' }
     let(:fixture_files) do
-      %w[gem-licenses.gemspec script/release.rb lib/**/* CHANGELOG.md LICENSE README.md RELEASING.md]
+      %w[gem-licenses.gemspec script/release.rb exe/**/* lib/**/* CHANGELOG.md LICENSE README.md RELEASING.md]
     end
     let(:placeholder) { '* Your contribution here.' }
     let(:note) { '* [#1](https://github.com/dblock/gem-licenses/pull/1): Added a feature - [@dblock](https://github.com/dblock).' }

@@ -8,6 +8,7 @@ dabooze
 dblock
 Doubrovkine
 edennis
+exe
 Gemfile
 GemLicensesRelease
 gemspec
