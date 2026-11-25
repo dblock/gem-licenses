@@ -1,7 +1,7 @@
 Gem-Licenses
 ============
 
-[![Build Status](https://travis-ci.org/dblock/gem-licenses.svg)](https://travis-ci.org/dblock/gem-licenses)
+[![Test](https://github.com/dblock/gem-licenses/actions/workflows/test.yml/badge.svg)](https://github.com/dblock/gem-licenses/actions/workflows/test.yml)
 
 Gem-licenses is an attempt to collect license information from project's gems. Similar to [3licenses](https://github.com/dblock/3licenses).
 

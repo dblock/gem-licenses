@@ -11,7 +11,7 @@ bundle install
 rake
 ```
 
-Check that the last build succeeded in [Travis CI](https://travis-ci.org/dblock/gem-licenses) for all supported platforms.
+Check that the last build succeeded in [GitHub Actions](https://github.com/dblock/gem-licenses/actions) for all supported platforms.
 
 Change "Next Release" in [CHANGELOG.md](CHANGELOG.md) to the new version.
 

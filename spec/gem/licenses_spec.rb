@@ -15,6 +15,12 @@ describe Gem do
   end
 
   it 'normalizes known license names' do
-    expect(subject['GPLv2'].size).to be > 0
+    gpl_spec = Gem::Specification.new do |spec|
+      spec.name = 'gpl-gem'
+      spec.version = '1.0.0'
+      spec.licenses = ['GPL-2']
+    end
+    allow(Gem).to receive(:loaded_specs).and_return('gpl-gem' => gpl_spec)
+    expect(subject['GPLv2']).to eq [gpl_spec]
   end
 end
