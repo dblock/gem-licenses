@@ -1,6 +1,7 @@
 #### 0.2.3 (Next)
 
 * [#25](https://github.com/dblock/gem-licenses/pull/25): Replace Travis CI with GitHub Actions testing Ruby 2.7 through 4.0, and make the license normalization spec independent of installed gems - [@dblock](https://github.com/dblock).
+* [#26](https://github.com/dblock/gem-licenses/pull/26): Lint Ruby, Markdown, YAML, and spelling with current RuboCop, rubocop-md, rubocop-prose, rubocop-spellcheck, and rubocop-yaml in a separate Lint workflow, and clean up documentation - [@dblock](https://github.com/dblock).
 * Your contribution here.
 
 #### 0.2.2 (2/16/2018)
@@ -9,7 +10,7 @@
 
 #### 0.2.1 (5/31/2016)
 
-* [#10](https://github.com/dblock/gem-licenses/pull/10): Rename class (from `Gem::Licenses` to `Gem::GemLicenses`) in order to avoid conflict with Rubygems 2.5 - [@caiosba](https://github.com/caiosba).
+* [#10](https://github.com/dblock/gem-licenses/pull/10): Rename class (from `Gem::Licenses` to `Gem::GemLicenses`) in order to avoid conflict with RubyGems 2.5 - [@caiosba](https://github.com/caiosba).
 
 #### 0.2.0 (7/17/2015)
 
@@ -22,4 +23,3 @@
 #### 0.1.2 (7/27/2011)
 
 * Initial public release - [@dblock](https://github.com/dblock).
-
