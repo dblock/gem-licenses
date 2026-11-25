@@ -48,6 +48,18 @@ To write a CSV file of gems, licenses, and the copyright lines found in each gem
 rake gem:licenses:copyrights:csv['copyrights.csv']
 ```
 
+### Command Line
+
+The `gem-licenses` command reports on a project's bundle without changing its `Rakefile`. Run it under `bundle exec` when gem-licenses is in the Gemfile, or install the gem and point it at a project.
+
+```shell
+bundle exec gem-licenses
+gem-licenses --gemfile path/to/Gemfile
+gem-licenses --csv licenses.csv
+```
+
+Without `--gemfile`, it reads the bundle that `BUNDLE_GEMFILE` or the `Gemfile` in the current directory describes, whose gems must be installed. Pass `--strict` to exit with status 1 when a gem has no guessable license, for example in CI. Run `gem-licenses --help` for all options.
+
 ## Contributing
 
 See [CONTRIBUTING](CONTRIBUTING.md), [CHANGELOG](CHANGELOG.md), and [RELEASING](RELEASING.md).

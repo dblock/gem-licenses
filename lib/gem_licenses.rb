@@ -1,6 +1,7 @@
 require 'yaml'
 require 'gem-licenses/version'
 require 'gem-licenses/install_tasks'
+require 'gem-licenses/report'
 require 'gem/specification'
 require 'gem-licenses/copyrights'
 require 'gem/licenses'

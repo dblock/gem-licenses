@@ -10,6 +10,9 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- spec/*`.split("\n")
   s.require_paths = ['lib']
+  s.bindir = 'exe'
+  s.executables = ['gem-licenses']
+  s.add_dependency 'csv'
   s.homepage = 'http://github.com/dblock/gem-licenses'
   s.licenses = ['MIT']
   s.summary = 'Attempts to figure out what licenses various gems use.'
