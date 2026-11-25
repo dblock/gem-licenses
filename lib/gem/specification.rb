@@ -3,16 +3,17 @@ module Gem
     alias __licenses licenses
 
     LICENSE_REFERENCES = [
-      /released under the (?<l>[\s\w]*) license/i,
-      /same license as (?<l>[\s\w]*)/i,
-      /^(?<l>[\s\w]*) License, see/i,
-      /^(?<l>[\w]*) license$/i,
-      /\(the (?<l>[\s\w]*) license\)/i,
-      /^license: (?<l>[\s\w]*)/i,
-      /^released under the (?<l>[\s\w]*) license/i,
-      /license: (?<l>[\s\w]*)$/i,
-      /^same as (?<l>[\s\w]*)/i,
-      /license of (?<l>[\s\w]*)/i
+      /released under the (?<l>[\s\w]+) license/i,
+      /same license as (?<l>[\s\w]+)/i,
+      /same terms of (?<l>[\s\w]+)/i,
+      /^(?<l>[\s\w]+) License, see/i,
+      /^(?<l>[\w]+) license$/i,
+      /\(the (?<l>[\s\w]+) license\)/i,
+      /^license: (?<l>[\s\w]+)/i,
+      /^released under the (?<l>[\s\w]+) license/i,
+      /license: (?<l>[\s\w]+)$/i,
+      /^same as (?<l>[\s\w]+)/i,
+      /license of (?<l>[\s\w]+)/i
     ].freeze
 
     def licenses
@@ -35,8 +36,8 @@ module Gem
       end
       licenses << 'unknown' if licenses.empty?
       licenses
-    rescue Errno::ENOENT
-      # TODO: warning
+    rescue Errno::ENOENT => e
+      warn "gem-licenses: #{e.message}."
       []
     end
 
@@ -66,15 +67,16 @@ module Gem
       file_handle = File.new(path, 'r')
       begin
         while (line = file_handle.gets)
-          line = line.strip
+          # Markdown headings, such as `# MIT License` in LICENSE.md
+          line = line.strip.sub(/\A#+\s*/, '')
           # positive matches
           LICENSE_REFERENCES.each do |r|
             res = r.match(line)
             return [res['l']] if res
           end
         end
-      rescue StandardError
-        # TODO: warning
+      rescue StandardError => e
+        warn "gem-licenses: cannot read #{path}: #{e.message}."
       ensure
         file_handle.close
       end
