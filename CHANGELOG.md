@@ -8,6 +8,7 @@
 * [#31](https://github.com/dblock/gem-licenses/pull/31): Load the Rake tasks automatically in Rails applications, load them only once, and clarify loading them from a `Rakefile` - [@olleolleolle](https://github.com/olleolleolle), [@dblock](https://github.com/dblock).
 * [#32](https://github.com/dblock/gem-licenses/pull/32): Find licenses named in Markdown headings such as `LICENSE.md`, match "same terms of", skip references without a license name, and warn about unreadable files, carried from [newrelic/gem-licenses](https://github.com/newrelic/gem-licenses) - [@olleolleolle](https://github.com/olleolleolle), [@dblock](https://github.com/dblock).
 * [#34](https://github.com/dblock/gem-licenses/pull/34): Detect licenses from "Licensed under the ___ License", such as the Apache License notice - [@dabooze](https://github.com/dabooze), [@DavidL06](https://github.com/DavidL06), [@dblock](https://github.com/dblock).
+* [#35](https://github.com/dblock/gem-licenses/pull/35): Collect copyright lines from license, notice, and readme files with `Gem::Specification#copyrights`, and write them with `rake gem:licenses:copyrights:csv` - [@DavidL06](https://github.com/DavidL06), [@dblock](https://github.com/dblock).
 * Your contribution here.
 
 #### 0.2.2 (2/16/2018)

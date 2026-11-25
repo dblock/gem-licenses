@@ -54,6 +54,25 @@ describe Gem::Specification do
     ).to_stderr
   end
 
+  describe '#copyrights' do
+    it 'collects copyright lines from license and readme files' do
+      allow(spec).to receive(:full_gem_path).and_return(gem_dir('copyrights'))
+      expect(spec.copyrights).to eq(['2019 Jane Doe', '2020 Example Corp', '2021 John Roe', '2022 Richard Roe'])
+    end
+
+    it 'returns no copyrights without license or readme files' do
+      allow(spec).to receive(:full_gem_path).and_return(gem_dir('released_under_the_bsd_license'))
+      expect(spec.copyrights).to eq([])
+    end
+
+    it 'warns about a missing gem directory' do
+      allow(spec).to receive(:full_gem_path).and_return(gem_dir('missing'))
+      expect { expect(spec.copyrights).to eq([]) }.to output(
+        /\Agem-licenses: No such file or directory .*missing\.\n\z/
+      ).to_stderr
+    end
+  end
+
   it 'warns about a missing gem directory' do
     allow(spec).to receive(:full_gem_path).and_return(gem_dir('missing'))
     expect { expect(spec.guess_licenses).to eq([]) }.to output(
