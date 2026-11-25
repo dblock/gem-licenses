@@ -11,6 +11,7 @@ module Gem
       /\(the (?<l>[\s\w]+) license\)/i,
       /^license: (?<l>[\s\w]+)/i,
       /^released under the (?<l>[\s\w]+) license/i,
+      /licensed under the (?<l>[\s\w]+) license/i,
       /license: (?<l>[\s\w]+)$/i,
       /^same as (?<l>[\s\w]+)/i,
       /license of (?<l>[\s\w]+)/i
