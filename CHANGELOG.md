@@ -2,6 +2,7 @@
 
 * [#25](https://github.com/dblock/gem-licenses/pull/25): Replace Travis CI with GitHub Actions testing Ruby 2.7 through 4.0, and make the license normalization spec independent of installed gems - [@dblock](https://github.com/dblock).
 * [#26](https://github.com/dblock/gem-licenses/pull/26): Lint Ruby, Markdown, YAML, and spelling with current RuboCop, rubocop-md, rubocop-prose, rubocop-spellcheck, and rubocop-yaml in a separate Lint workflow, and clean up documentation - [@dblock](https://github.com/dblock).
+* [#27](https://github.com/dblock/gem-licenses/pull/27): Run CI pushes only on the default branch, cancel superseded pull request runs, and bound test job times - [@dblock](https://github.com/dblock).
 * Your contribution here.
 
 #### 0.2.2 (2/16/2018)
