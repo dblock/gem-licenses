@@ -22,7 +22,7 @@ group :development, :test do
 end
 ```
 
-Install Rake tasks from Rakefile.
+Rails applications load the Rake tasks automatically. In other projects, load them in your `Rakefile`. This makes the tasks available each time Rake runs and doesn't copy any files into your project.
 
 ```ruby
 require 'rake'

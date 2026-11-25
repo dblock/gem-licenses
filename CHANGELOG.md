@@ -5,6 +5,7 @@
 * [#27](https://github.com/dblock/gem-licenses/pull/27): Run CI pushes only on the default branch, cancel superseded pull request runs, and bound test job times - [@dblock](https://github.com/dblock).
 * [#29](https://github.com/dblock/gem-licenses/pull/29): Release with ruby-gem-release through a manually dispatched GitHub Actions workflow and RubyGems Trusted Publishing - [@dblock](https://github.com/dblock).
 * [#30](https://github.com/dblock/gem-licenses/pull/30): Test the Rake tasks, and fail with a usage message when `gem:licenses:csv` has no filename - [@dblock](https://github.com/dblock).
+* [#31](https://github.com/dblock/gem-licenses/pull/31): Load the Rake tasks automatically in Rails applications, load them only once, and clarify loading them from a `Rakefile` - [@olleolleolle](https://github.com/olleolleolle), [@dblock](https://github.com/dblock).
 * Your contribution here.
 
 #### 0.2.2 (2/16/2018)

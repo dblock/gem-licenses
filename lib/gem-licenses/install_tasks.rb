@@ -1,6 +1,8 @@
 module Gem
   module GemLicenses
     def self.install_tasks
+      return if Rake::Task.task_defined?('gem:licenses')
+
       spec = Gem::Specification.find_by_name('gem-licenses')
       Dir[File.join(spec.gem_dir, 'tasks/*.rake')].each do |file|
         load file
